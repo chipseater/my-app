@@ -1,0 +1,17 @@
+@import "../_settings.scss";
+
+.navigation {
+  margin: 26px 0;
+  display: flex;
+
+  a {
+    margin: 5%;
+    padding: 10px;
+    border-radius: 4px;
+    position: relative;
+  }
+}
+.nav-link {
+  text-decoration: underline $color-1;
+  text-decoration-thickness: 7px;
+}
