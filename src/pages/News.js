@@ -6,35 +6,50 @@ import Article from "../components/Article.js"
 const News = () => {
     const [newsData, setNewsData] = useState([])
     const [author, setAuthor] = useState('')
+    const [content, setContent] = useState('')
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         getData()
+        // eslint-disable-next-line
     }, []);
 
     function getData() {
-        axios.get('http://localhost:3003/articles/').then((res) => setNewsData(res.data))
+        axios.get('http://localhost:3003/articles/')
+         .then((res) => {
+            setNewsData(res.data)
+            setAuthor('')
+            setContent('')
+            })
     }
 
     function handleSubmit(event){
         event.preventDefault()
-        axios.post("http://localhost:3003/articles", {
+        getData()
+        if (content.length > 120) {
+            axios.post("http://localhost:3003/articles", {
             author: author,
-            content:"cc sa va ?",
+            content: content,
             date: Date.now(),
-        })
+            })
+        }
+        else {
+            setError(true)
+        }
     }
 
     return (
         <div className="news-container">
-            <Navigation/>
+           <Navigation/>
            <h1>News</h1>
            <form onSubmit={(event) => handleSubmit(event)}>
                 <input
-                 onChange={(event) => {setAuthor(event.target.value)}}
-                 type="text" placeholder="Nom"></input>
+                    onChange={(event) => {setAuthor(event.target.value)}}
+                    type="text" placeholder="Nom"></input>
                 <textarea
-                 onChange={(event) => {setAuthor(event.target.value)}}>
+                    onChange={(event) => {setContent(event.target.value)}}>
                 </textarea>
+                {error && <p>Veuillez écrire au moins 120 caractères</p>}
                 <input type="submit" value="Envoyer"></input>
            </form>
            <ul>{newsData
