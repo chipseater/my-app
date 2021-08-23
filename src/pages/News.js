@@ -23,8 +23,7 @@ const News = () => {
             })
     }
 
-    function handleSubmit(event){
-        event.preventDefault()
+    function handleSubmit(event) {
         getData()
         if (content.length > 120) {
             axios.post("http://localhost:3003/articles", {
@@ -32,6 +31,7 @@ const News = () => {
             content: content,
             date: Date.now(),
             })
+            event.preventDefault()
         }
         else {
             setError(true)
@@ -47,6 +47,7 @@ const News = () => {
                     onChange={(event) => {setAuthor(event.target.value)}}
                     type="text" placeholder="Nom"></input>
                 <textarea
+                    style={{border: error ? "1px solid red" : "1px solid #61dafb"}}
                     onChange={(event) => {setContent(event.target.value)}}>
                 </textarea>
                 {error && <p>Veuillez écrire au moins 120 caractères</p>}

@@ -2,6 +2,7 @@ import React from 'react';
 
 const Article = (props) => {
 
+
     const article = props.data
     const dateParser = (date) => {
         let newDate = new Date(date).toLocaleDateString('fr-FR',
