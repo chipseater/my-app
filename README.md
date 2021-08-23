@@ -48,7 +48,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### `yarn server`
 
-It will launch the fake api which is working with just in a local json file.
+It will launch the fake api which is working with just in a local json file. Browse http://localhost:3003/articles to see it
 
 ## Learn More
 
