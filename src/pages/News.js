@@ -5,6 +5,7 @@ import Article from "../components/Article.js"
 
 const News = () => {
     const [newsData, setNewsData] = useState([])
+    const [author, setAuthor] = useState('')
 
     useEffect(() => {
         getData()
@@ -17,7 +18,7 @@ const News = () => {
     function handleSubmit(event){
         event.preventDefault()
         axios.post("http://localhost:3003/articles", {
-            author:"Denis",
+            author: author,
             content:"cc sa va ?",
             date: Date.now(),
         })
@@ -28,12 +29,19 @@ const News = () => {
             <Navigation/>
            <h1>News</h1>
            <form onSubmit={(event) => handleSubmit(event)}>
-                <input type="text" placeholder="Nom"></input>
-                <textarea></textarea>
+                <input
+                 onChange={(event) => {setAuthor(event.target.value)}}
+                 type="text" placeholder="Nom"></input>
+                <textarea
+                 onChange={(event) => {setAuthor(event.target.value)}}>
+                </textarea>
                 <input type="submit" value="Envoyer"></input>
            </form>
-           <ul>{newsData.sort((a,b) => (b.date - a.date))
-                .map((article) => (<Article key={article.id} data={article}/>))}</ul>
+           <ul>{newsData
+                .sort((a,b) => (b.date - a.date))
+                .map((article) => (<Article key={article.id}
+                data={article}/>))}
+            </ul>
         </div>
     );
 };
