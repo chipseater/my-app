@@ -9,7 +9,7 @@ const Home = () => {
             <Logo />
             <Navigation/>
             <br></br>
-            <h1>Coucou</h1>
+            <h1>Quels jolis pays</h1>
             <Countries/>
         </div>
     )

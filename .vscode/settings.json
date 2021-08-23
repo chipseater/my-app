@@ -1,0 +1,4 @@
+{
+    "editor.formatOnPaste": true,
+    "paste-html-as-jsx.mode": "on-demand"
+}
